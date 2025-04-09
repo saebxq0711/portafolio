@@ -4,25 +4,27 @@ import { useState, useEffect, useCallback } from 'react';
 import TrackVisibility from "react-on-screen";
 import "animate.css";
 
+// ✅ Mover fuera del componente
+const toRotate = ["Desarrollador Web", "Desarrollador FullStack", "Desarrollador de Software"];
+
 const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const toRotate = ["Desarrollador Web", "Desarrollador FullStack", "Desarrollador de Software"];
   const [text, setText] = useState('');
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const period = 2000;
 
   const tick = useCallback(() => {
-    let i = loopNum % toRotate.length;
-    let fullText = toRotate[i];
-    let updatedText = isDeleting
+    const i = loopNum % toRotate.length;
+    const fullText = toRotate[i];
+    const updatedText = isDeleting
       ? fullText.substring(0, text.length - 1)
       : fullText.substring(0, text.length + 1);
 
     setText(updatedText);
 
     if (isDeleting) {
-      setDelta(prevDelta => prevDelta / 2);
+      setDelta(prev => prev / 2);
     }
 
     if (!isDeleting && updatedText === fullText) {
@@ -30,16 +32,15 @@ const Banner = () => {
       setDelta(period);
     } else if (isDeleting && updatedText === '') {
       setIsDeleting(false);
-      setLoopNum(prevLoopNum => prevLoopNum + 1);
+      setLoopNum(prev => prev + 1);
       setDelta(500);
     }
-  }, [text, isDeleting, loopNum, toRotate]);
+  }, [loopNum, isDeleting, text]);
 
   useEffect(() => {
     const ticker = setInterval(() => {
       tick();
     }, delta);
-
     return () => clearInterval(ticker);
   }, [tick, delta]);
 
@@ -63,7 +64,7 @@ const Banner = () => {
         </Row>
       </Container>
     </section>
-  )
+  );
 }
 
 export default Banner;
