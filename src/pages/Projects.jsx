@@ -69,8 +69,8 @@ const Projects = () => {
                                         }
                                     </Row>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="second">Aquí se encontrarán futuros proyectos</Tab.Pane>
-                                <Tab.Pane eventKey="third">Aquí se encontrarán futuros proyectos</Tab.Pane>
+                                <Tab.Pane eventKey="second">Aquí mostraré mis futuros proyectos</Tab.Pane>
+                                <Tab.Pane eventKey="third">Aquí mostraré mis futuros proyectos</Tab.Pane>
                             </Tab.Content>
                         </Tab.Container>
                     </Col>
