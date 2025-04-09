@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
-import header from '../assets/img/header-img.svg';
+import perfil from '../assets/img/perfil.jpg';
 import { useState, useEffect, useCallback } from 'react';
 import TrackVisibility from "react-on-screen";
 import "animate.css";
@@ -59,7 +59,7 @@ const Banner = () => {
             </TrackVisibility>
           </Col>
           <Col xs={12} md={6} xl={5}>
-            <img src={header} alt="Banner" />
+            <img className="perfil" src={perfil} alt="Banner" />
           </Col>
         </Row>
       </Container>
