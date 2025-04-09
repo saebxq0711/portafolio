@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import header from '../assets/img/header-img.svg';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import TrackVisibility from "react-on-screen";
 import "animate.css";
 
@@ -13,32 +13,35 @@ const Banner = () => {
     const period = 2000;
 
     useEffect(() => {
-        let ticker = setInterval(() => {
+        const tick = () => {
+            const i = loopNum % toRotate.length;
+            const fullText = toRotate[i];
+            const updatedText = isDeleting
+                ? fullText.substring(0, text.length - 1)
+                : fullText.substring(0, text.length + 1);
+
+            setText(updatedText);
+
+            if (isDeleting) {
+                setDelta((prevDelta) => prevDelta / 2);
+            }
+
+            if (!isDeleting && updatedText === fullText) {
+                setIsDeleting(true);
+                setDelta(period);
+            } else if (isDeleting && updatedText === "") {
+                setIsDeleting(false);
+                setLoopNum((prevLoopNum) => prevLoopNum + 1);
+                setDelta(500);
+            }
+        };
+
+        const ticker = setInterval(() => {
             tick();
-        }, delta)
+        }, delta);
 
-        return () => {clearInterval(ticker)};
-    }, [text, delta])
-
-    const tick = () => {
-        let l = loopNum % toRotate.length;
-        let fullText = toRotate[l];
-        let updatedText = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
-        setText(updatedText);
-
-        if (isDeleting) {
-            setDelta(prevDelta => prevDelta /2)
-        }
-
-        if (!isDeleting && updatedText === fullText) {
-            setIsDeleting(true);
-            setDelta(period);
-        } else if (isDeleting && updatedText === '') {
-            setIsDeleting(false);
-            setLoopNum(loopNum +1);
-            setDelta(500);
-        }
-    }
+        return () => clearInterval(ticker);
+    }, [text, delta, isDeleting, loopNum, toRotate]);
 
     return (
         <section className="banner" id="home">
@@ -46,15 +49,18 @@ const Banner = () => {
                 <Row className="align-items-center">
                     <Col xs={12} md={6} xl={7}>
                         <TrackVisibility>
-                        {({IsVisible})  => 
-                            <div className={IsVisible ? "animated_animated animate_fadeIn" : ""}>
-                            <span className="tagline">
-                                Bienvenido a mi portafolio
-                            </span>
-                            <h1>{`Hola, soy Juan Aranda `}<span className="wrap">{text}</span></h1>
-                            <p>Soy un analista y desarrollador de software en etapa lectiva en 
-                                el Servicio Nacional de Aprendizaje (SENA)</p>
-                            </div>}
+                            {({ isVisible }) => (
+                                <div className={isVisible ? "animated_animated animate_fadeIn" : ""}>
+                                    <span className="tagline">Bienvenido a mi portafolio</span>
+                                    <h1>
+                                        {`Hola, soy Juan Aranda `}<span className="wrap">{text}</span>
+                                    </h1>
+                                    <p>
+                                        Soy un analista y desarrollador de software en etapa lectiva en el
+                                        Servicio Nacional de Aprendizaje (SENA)
+                                    </p>
+                                </div>
+                            )}
                         </TrackVisibility>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
@@ -63,7 +69,7 @@ const Banner = () => {
                 </Row>
             </Container>
         </section>
-    )
-}
+    );
+};
 
 export default Banner;
