@@ -57,6 +57,12 @@ const Skills = () => {
                                 </div>
 
                                 <div className="item">
+                                    <img src={visual} alt="" />
+                                    <h5>Framework Laravel</h5>
+                                </div>
+
+
+                                <div className="item">
                                     <img src={html} alt="" />
                                     <h5>HTML</h5>
                                 </div>

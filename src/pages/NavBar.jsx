@@ -7,7 +7,6 @@ import linked from '../assets/img/linkedin.svg';
 import envelope from '../assets/img/envelope.svg';
 import vida from '../assets/cv/Hoja_de_vida_Juan_Aranda.pdf';
 import "animate.css";
-import { BrowserRouter as Router} from "react-router-dom";
 
 
 
