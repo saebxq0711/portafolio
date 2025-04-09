@@ -18,7 +18,7 @@ const Banner = () => {
         }, delta)
 
         return () => {clearInterval(ticker)};
-    }, [text])
+    }, [text, delta])
 
     const tick = () => {
         let l = loopNum % toRotate.length;
