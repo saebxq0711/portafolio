@@ -8,6 +8,10 @@ import css from '../assets/img/css.png';
 import laravel from '../assets/img/laravel.png';
 import sql from '../assets/img/sql.png';
 import colorSharp from '../assets/img/color-sharp.png';
+import git from '../assets/img/git.png';
+import boot from '../assets/img/boot.png';
+
+
 const Skills = () => {
     const responsive = {
         superLargeDesktop: {
@@ -59,6 +63,16 @@ const Skills = () => {
                                 <div className="item">
                                     <img src={visual} alt="" />
                                     <h5>Visual Studio Code</h5>
+                                </div>
+
+                                <div className="item">
+                                    <img src={boot} alt="" />
+                                    <h5>Bootstrap</h5>
+                                </div>
+
+                                <div className="item">
+                                    <img src={git} alt="" />
+                                    <h5>Git</h5>
                                 </div>
 
 

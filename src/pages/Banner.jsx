@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
-import perfil from '../assets/img/perfil.jpg';
+import perfil from '../assets/img/perfil.png';
 import { useState, useEffect, useCallback } from 'react';
 import TrackVisibility from "react-on-screen";
 import "animate.css";
